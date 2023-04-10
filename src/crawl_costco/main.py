@@ -11,20 +11,20 @@ from dotenv import load_dotenv
 
 import time
 import os
+
 load_dotenv()
 # the destination
 url = "https://www.facebook.com/groups/1260448967306807"
-# Run in headless mode (without a visible browser window)
+
 options = Options()
 options.add_argument("-en-US")
-# options.add_argument('--headless')
+# Run in headless mode (without a visible browser window)
+options.add_argument("--headless")
 options.add_argument("--disable-notifications")
-EMAIL = os.getenv('email')
-PASSWORD = os.getenv('password')
+EMAIL = os.getenv("email")
+PASSWORD = os.getenv("password")
 
-driver = webdriver.Chrome(
-    executable_path="../tools/chromedriver", options=options
-)
+driver = webdriver.Chrome(executable_path="../tools/chromedriver", options=options)
 # driver.get("http://facebook.com")
 # wait = WebDriverWait(driver, 30)
 # email_field = wait.until(EC.visibility_of_element_located((By.NAME, 'email')))
@@ -32,27 +32,31 @@ driver = webdriver.Chrome(
 # pass_field = wait.until(EC.visibility_of_element_located((By.NAME, 'pass')))
 # pass_field.send_keys(PASSWORD)
 # pass_field.send_keys(Keys.RETURN)
+height = 0
 
-time.sleep(5)
-
-cur_height = "return action=document.body.scrollHeight"
 try:
     driver.get(url)
 except:
     print("url is wrong!")
-time.sleep(5)
+time.sleep(3)
 
-
-# post
-for x in range(3):
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+while True:
+    driver.execute_script("window.scrollBy(0, 400)")
+    time.sleep(2)
     openComment(driver)
     openSeemore(driver)
+    cur_height = driver.execute_script(
+        "return action=document.documentElement.scrollTop"
+    )
     print("scroll")
-    time.sleep(5)
+    print(cur_height)
+    print(height)
+    if height == cur_height:
+        break
+    height = cur_height
+    html = driver.page_source
+    soup = BeautifulSoup(html, "html.parser")
+    crawl(soup)
 
 
-html = driver.page_source
-soup = BeautifulSoup(html, "html.parser")
-crawl(soup)
 driver.quit()
