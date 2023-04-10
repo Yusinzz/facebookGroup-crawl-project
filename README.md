@@ -23,7 +23,7 @@ pip install bs4
 
 Use main.py to collect the data.
 The content we crawl will store in the root folder as .csv file.
-
+This code will run continuously until all content is crawled or we interrupt it ourselves
 
 ## Result
 
