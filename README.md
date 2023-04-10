@@ -9,7 +9,7 @@ make sure you have selenium and beautifulsoup
 
 ### Installing
 
-What  need to install sselenium and beautifulsoup first.
+We need to install sselenium and beautifulsoup first.
 
 ```
 pip install selenium
@@ -19,15 +19,14 @@ pip install selenium
 pip install bs4
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Running the code
 
-We can run main.py to start crawling!
+Use main.py to collect the data.
+The content we crawl will store in the root folder as .csv file.
 
 
 ## Result
 
-the result .csv file will display like below image
+The result .csv file will display like below image
 
 ![image](https://user-images.githubusercontent.com/34501891/230991936-97357f25-5647-471e-a002-4cefd031cfce.png)
