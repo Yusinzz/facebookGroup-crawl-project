@@ -1,2 +1,0 @@
-email = "abcd510188@yahoo.com.tw"
-password = "C@t577ask81"
